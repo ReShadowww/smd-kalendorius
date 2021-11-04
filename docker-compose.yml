@@ -23,7 +23,7 @@ services:
       - traefik.enable=false
     volumes:
       - smd_mysql:/var/lib/mysql
-      - ./init.sql:/docker-entrypoint-initdb.d
+      - ./init:/docker-entrypoint-initdb.d/:ro
 
   smd-cal:
     build: .
