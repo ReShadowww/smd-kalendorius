@@ -2,3 +2,4 @@ Flask
 icalendar
 mysql-connector-python
 requests
+python-dotenv
