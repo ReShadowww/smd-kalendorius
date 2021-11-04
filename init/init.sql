@@ -1,7 +1,7 @@
-DROP DATABASE if EXISTS smd_cal;
-CREATE DATABASE smd_cal;
+DROP DATABASE if EXISTS smdcal;
+CREATE DATABASE smdcal;
 
-create table smd_cal.bureliai(
+create table bureliai(
     id int auto_increment primary key,
     burelis varchar(255) not null,
     UNIQUE (burelis)
