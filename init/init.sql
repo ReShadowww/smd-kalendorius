@@ -1,6 +1,8 @@
 DROP DATABASE if EXISTS smdcal;
 CREATE DATABASE smdcal;
 
+USE smdcal;
+
 create table bureliai(
     id int auto_increment primary key,
     burelis varchar(255) not null,
