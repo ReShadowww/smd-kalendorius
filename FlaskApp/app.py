@@ -4,15 +4,21 @@ import mysql.connector
 from icalendar import Calendar, Event
 import requests
 
+import os
+from dotenv import load_dotenv
+
+load_dotenv()
+
+MYSQL_DATABASE = os.getenv("MYSQL_DATABASE")
+MYSQL_USER = os.getenv("MYSQL_USER")
+MYSQL_PASSWORD = os.getenv("MYSQL_PASSWORD")
+MYSQL_ROOT_PASSWORD = os.getenv("MYSQL_ROOT_PASSWORD")
+MYSQL_PORT = os.getenv("MYSQL_PORT")
+MYSQL_HOST = os.getenv("MYSQL_HOST")
+
 app = Flask(__name__)
 
 CALENDAR_URL = "https://www.smd.lt/events/ical-events"
-
-DB_USERNAME = ""
-DB_PASSWORD = ""
-DB_HOST = ""
-DB_PORT = ""
-DB_NAME = ""
 
 
 def get_calendar_from_url(url):
@@ -60,11 +66,11 @@ def get_bureliai_from_db(cnx):
 
 def connect_to_mysql():
     cnx = mysql.connector.connect(
-        user=DB_USERNAME,
-        password=DB_PASSWORD,
-        host=DB_HOST,
-        port=DB_PORT,
-        database=DB_NAME,
+        user=MYSQL_USER,
+        password=MYSQL_PASSWORD,
+        host=MYSQL_HOST,
+        port=MYSQL_PORT,
+        database=MYSQL_DATABASE,
     )
     return cnx
 

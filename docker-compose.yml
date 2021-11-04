@@ -11,12 +11,12 @@ services:
     image: mysql
     restart: always
     environment:
-      MYSQL_DATABASE: 'DB_NAME'
-      MYSQL_USER: 'DB_USERNAME'
-      MYSQL_PASSWORD: 'DB_PASSWORD'
-      MYSQL_ROOT_PASSWORD: 'DB_ROOT_PASSWORD'
+      MYSQL_DATABASE: '${MYSQL_DATABASE:?MYSQL_DATABASE}'
+      MYSQL_USER: '${MYSQL_USER:?MYSQL_USER}'
+      MYSQL_PASSWORD: '${MYSQL_PASSWORD:?MYSQL_PASSWORD}'
+      MYSQL_ROOT_PASSWORD: '${MYSQL_ROOT_PASSWORD:?MYSQL_ROOT_PASSWORD}'
     ports:
-      - 'DB_PORT:3306'
+      - '${MYSQL_PORT}:3306'
     networks:
       - internal
     labels:
