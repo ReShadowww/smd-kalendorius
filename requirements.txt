@@ -1,0 +1,4 @@
+Flask
+icalendar
+mysql-connector-python
+requests

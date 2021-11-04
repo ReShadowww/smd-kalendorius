@@ -1,0 +1,43 @@
+version: '3'
+
+networks:
+  web:
+    external: true
+  internal:
+    external: false
+
+services:
+  smd_mysql:
+    image: mysql
+    restart: always
+    environment:
+      MYSQL_DATABASE: 'DB_NAME'
+      MYSQL_USER: 'DB_USERNAME'
+      MYSQL_PASSWORD: 'DB_PASSWORD'
+      MYSQL_ROOT_PASSWORD: 'DB_ROOT_PASSWORD'
+    ports:
+      - 'DB_PORT:3306'
+    networks:
+      - internal
+    labels:
+      - traefik.enable=false
+    volumes:
+      - smd_mysql:/var/lib/mysql
+      - ./init:/docker-entrypoint-initdb.d
+
+  smd-cal:
+    build: .
+    restart: always
+    ports:
+      - '5005:5005'
+    labels:
+      - traefik.http.routers.smd.rule=Host(`smd.reshadow.lt`)
+      - traefik.http.routers.smd.tls=true
+      - traefik.http.routers.smd.tls.certresolver=myresolver
+      - traefik.port=5005
+    networks:
+      - web
+
+volumes:
+  smd_mysql:
+    driver: local
