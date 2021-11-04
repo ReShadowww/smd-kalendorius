@@ -1,6 +1,8 @@
 DROP DATABASE if EXISTS smdcal;
 CREATE DATABASE smdcal;
 
+ALTER DATABASE smdcal CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+
 USE smdcal;
 
 create table bureliai(
